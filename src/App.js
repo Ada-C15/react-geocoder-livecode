@@ -1,4 +1,6 @@
+import React from 'react';
 import logo from './logo.svg';
+import { LOCATIONIQ_API_KEY } from './secrets.js'
 import './App.css';
 
 function App() {
@@ -7,7 +9,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          My API key is {LOCATIONIQ_API_KEY} and was loaded from secrets.js!
         </p>
         <a
           className="App-link"
