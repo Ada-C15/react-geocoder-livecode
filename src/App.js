@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import { LOCATIONIQ_API_KEY } from './secrets.js'
+import LOCATIONIQ_API_KEY from './secrets.js'
 import './App.css';
 
 function App() {
