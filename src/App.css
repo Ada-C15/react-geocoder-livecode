@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.error {
+  outline-color: red;
+  outline-width: .3em;
+  outline-style: solid;
+  background-color: lightcoral;
+}
