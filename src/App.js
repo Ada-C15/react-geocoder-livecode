@@ -14,26 +14,23 @@ function App() {
     setSearchTerm(event.target.value);
   };
 
-  useEffect( () => {
-    axios.get(`https://us1.locationiq.com/v1/search.php?key=${LOCATIONIQ_API_KEY.LOCATIONIQ_API_KEY}&q=$Seattle&format=json`)
-    .then((response) => {
-      setSearchResults(response.data[0]);
-    })
-    .catch((error) => {
-      setError(error.response.data.error);
-    });
-  }, []);
-
-  const callApi = (event) => {
-    event.preventDefault()
-    axios.get(`https://us1.locationiq.com/v1/search.php?key=${LOCATIONIQ_API_KEY.LOCATIONIQ_API_KEY}&q=${searchTerm}&format=json`)
+  const callApi = () => {
+    axios.get(`https://us1.locationiq.com/v1/search.php?key=${LOCATIONIQ_API_KEY}&q=${searchTerm}&format=json`)
       .then((response) => {
         setSearchResults(response.data[0]);
+        setError(null);
       })
       .catch((error) => {
         setError(error.response.data.error);
       });
   };
+
+  useEffect(callApi, []);
+
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+    callApi();
+  }
 
 
   let errorJSX;
@@ -49,7 +46,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Get Longitude and Latitude</h1>
-        <form onSubmit={callApi}>
+        <form onSubmit={onFormSubmit}>
           <label id="locationLabel" htmlFor="Location Name: ">Location Name: </label>
           <input type="text" value={searchTerm} onChange={updateSearchTerm} />
           <input type="submit" value="Search Now!" />
