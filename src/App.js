@@ -50,7 +50,7 @@ function App() {
       <header className="App-header">
         <h1>Get Longitude and Latitude</h1>
         <form onSubmit={callApi}>
-          <label htmlFor="Location Name: " />
+          <label id="locationLabel" htmlFor="Location Name: ">Location Name: </label>
           <input type="text" value={searchTerm} onChange={updateSearchTerm} />
           <input type="submit" value="Search Now!" />
         </form>
