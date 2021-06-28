@@ -12,8 +12,10 @@ const LocationForm = (props) => {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    props.onSubmitHandler(city);
-    setCity('');
+    if (city) {
+      props.onSubmitHandler(city);
+      setCity('');
+    }
   }
 
   return (

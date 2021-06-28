@@ -13,6 +13,8 @@ function App () {
     lon: '',
   });
 
+  const [error, setError] = useState(null);
+
   const getLocation = (city) => {
     axios.get(`${ URL }?key=${ LOCATIONIQ_API_KEY }&q=${city}&format=json`)
       .then((response) => {
@@ -22,9 +24,10 @@ function App () {
           lon: response.data[0].lon,
         }
         setLocation(newLocation);
+        setError(null);
       })
       .catch((error) => {
-        console.log('error.response.data');
+        setError(error.response.data.error);
       });
   }
 
@@ -37,6 +40,7 @@ function App () {
     <div className="App">
       <header className="App-header">
         <h1>Get Longitude and Latitude</h1>
+        {error ? <h2>{error}</h2> : '' }
         <div>
           <LocationForm onSubmitHandler={getLocation} />
         </div>
